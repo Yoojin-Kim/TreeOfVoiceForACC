@@ -135,15 +135,15 @@ public class CommHub : MonoBehaviour
         // The instance is automatically created (by new  PointerEventsController() ) when the component is added to the gameObject
         // The gameboject will has the reference to that instance.
 
-        m_irSensorMasterController = gameObject.GetComponent<IRSensorMasterController>();
-        m_ledMasterController = gameObject.GetComponent<LEDMasterController>();
-        m_neuroHeadSetController = gameObject.GetComponent<NeuroHeadSetController>();
-       
-     
+        //m_irSensorMasterController = gameObject.GetComponent<IRSensorMasterController>();  //IRSensorMasterControlle component should be added to CommHub game object
+        m_ledMasterController = gameObject.GetComponent<LEDMasterController>();  //LEDMasterController component should be added to CommHub game object
+        //m_neuroHeadSetController = gameObject.GetComponent<NeuroHeadSetController>(); //NeuroHeadSetController component should be added to CommHub game object
 
-       
 
-       
+
+
+
+
 
 
         //In Start(): call actionPlanController.InitActionPlan
@@ -186,15 +186,17 @@ public class CommHub : MonoBehaviour
         //two right mouse clicks merge or split the fields based on the position of the mouse within the field
 
         // inputField.onEndEdit += actionPlanController.ChangeActionValues ==> This will be done within actionPlanController.initActionPlan
-        m_neuroHeadSetController.onAverageSignalReceived += m_ledColorGenController.UpdateLEDResponseParameter;
-        m_irSensorMasterController.onAverageSignalReceived += m_ledColorGenController.UpdateColorBrightnessParameter;
+
+        
+        //m_neuroHeadSetController.onAverageSignalReceived += m_ledColorGenController.UpdateLEDResponseParameter;
+        //m_irSensorMasterController.onAverageSignalReceived += m_ledColorGenController.UpdateColorBrightnessParameter;
 
         //In Update call  m_boidsController.SampleColorsAtLEDPoints
         //In Update call ledMasterController.SendLEDData
         
-         m_actionPlanController.loadButton.onClick.AddListener(m_dictManager.LoadActionPlan ) ;
+        // m_actionPlanController.loadButton.onClick.AddListener(m_dictManager.LoadActionPlan ) ;
 
-         m_actionPlanController.saveButton.onClick.AddListener( m_dictManager.SaveActionPlan) ;
+         //m_actionPlanController.saveButton.onClick.AddListener( m_dictManager.SaveActionPlan) ;
 
 
         m_ledColorGenController = gameObject.GetComponent<LEDColorGenController>();

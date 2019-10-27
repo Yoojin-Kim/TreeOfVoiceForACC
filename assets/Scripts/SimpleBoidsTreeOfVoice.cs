@@ -457,7 +457,7 @@ public class SimpleBoidsTreeOfVoice : MonoBehaviour
 
             // For debugging           
 
-            for (int i = 0; i < numOfWallGizmos; i++)
+          /*  for (int i = 0; i < numOfWallGizmos; i++)
             {
                 Debug.Log("Wall Orientation = "); Debug.Log(i);
 
@@ -467,7 +467,7 @@ public class SimpleBoidsTreeOfVoice : MonoBehaviour
                 Debug.Log("right  ="); Debug.Log(gameObjForWallTransforms[i].transform.right);
                 Debug.Log("forward ="); Debug.Log(gameObjForWallTransforms[i].transform.forward);
                 Debug.Log("up  ="); Debug.Log(gameObjForWallTransforms[i].transform.up);
-            }
+            } */
 
 
         } // ! wallTransformsDefined

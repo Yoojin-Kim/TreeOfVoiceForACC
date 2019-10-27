@@ -20,7 +20,7 @@ public class LEDColorGenController : MonoBehaviour
 
     // Setup events for sending LED data to m_LEDMasterController
 
-    public int m_totalNumOfLeds = 7 + 5 + 10 + 10;
+    public int m_totalNumOfLeds = 40*4; //for test
 
     public delegate void LEDSenderHandler(byte[] LEDArray);
     public event LEDSenderHandler m_ledSenderHandler;
@@ -99,12 +99,26 @@ public class LEDColorGenController : MonoBehaviour
         for (int i = 0; i < m_totalNumOfLeds; i++)
         {
             int k = Random.Range(0, m_boidsNum);
-
+            /*
             m_LEDArray[i * 3] = (byte) (255 * m_boidComponent.m_boidArray[k].Color[0] ); // Vector4 Color
             m_LEDArray[i * 3 +1] = (byte) ( 255 * m_boidComponent.m_boidArray[k].Color[1] );
             m_LEDArray[i * 3 +2] = (byte) (255 *  m_boidComponent.m_boidArray[k].Color[2] );
+            */
+            //for test
+            m_LEDArray[i * 3] = (byte)255;
+            m_LEDArray[i * 3 + 1] = (byte)255;
+            m_LEDArray[i * 3 + 2] = (byte)255;
 
 
+        }
+
+        for (int i = 0; i < m_totalNumOfLeds; i++)
+        {
+            Debug.Log("GenController"+i + "th LED");
+            for (int j = 0; j < 2; j++)
+            {
+                Debug.Log("GenController" + m_LEDArray[i * 3 + j]); //for test
+            }
         }
 
         m_ledSenderHandler.Invoke( m_LEDArray) ;
