@@ -110,8 +110,8 @@ void setup (void) {
 void loop (void) {	
   Serial.println("loop started");
 //  /////////////////////////////////////////////////////////////////////////////////////////
-	int countToRead = Serial.available(); 
-  Serial.println(countToRead);
+//	int countToRead = Serial.available(); 
+//  Serial.println(countToRead);
 ////	// get the number of bytes already received in the receive buffer of the serial port 
 ////	int HardwareSerial::available(void)
 ////        {
@@ -124,12 +124,15 @@ void loop (void) {
 //	// Read countToRead  bytes from the serial port buffer to a buffer; terminated if the determined number (count) is read or it times out
 //	// The timeout delay is set by Serial.setTimeout(); default to 1000 ms
 // else{
-//  	m_accumReadCount = Serial.readBytes(totalRecieveBuffer, countToRead); 
+//  	m_accumReadCount = Serial.read(totalRecieveBuffer, countToRead); 
 // }
 //	// read count bytes from the tail of the buffer; head == tail when the buffer is empty or full
 //
-    m_accumReadCount = Serial.readBytes( totalRecieveBuffer, totalByteSize);
-    Serial.println("readBytes");
+    int readCount = Serial.readBytes( totalRecieveBuffer, totalByteSize);
+
+    //m_accumReadCount += readCount;
+    
+    Serial.println(readCount);
 //
 //	// terminates if length characters have been read or timeout (see setTimeout)
 //  // returns the number of characters placed in the buffer (0 means no valid data found)
@@ -146,22 +149,23 @@ void loop (void) {
 //	
 //	// check if the totalBytesSize has been read; that is check if time out occurred. If so, continue to read until the totalBytesSize
 //	// has been read.
-
-//	while ( m_accumReadCount <  countToRead)  //because of timeout
+//
+//	while ( readCount <  countToRead)  //because of timeout
 //	{ 
-//	  int newReadCount =  Serial.readBytes( &totalRecieveBuffer[m_accumReadCount], countToRead - m_accumReadCount);
-//	  m_accumReadCount += newReadCount; 
+//	  int newReadCount =  Serial.readBytes( &totalRecieveBuffer[m_accumReadCount], countToRead - readCount);
+//	  readCount += newReadCount; 
+//    m_accumReadCount += newReadCount;
 //	}
 
-  while ( m_accumReadCount <  totalByteSize)  //because of timeout
-  { 
-    int newReadCount =  Serial.readBytes( &totalRecieveBuffer[m_accumReadCount], totalByteSize - m_accumReadCount);
-    m_accumReadCount += newReadCount; 
-
-    Serial.println(totalByteSize);
-    Serial.println(newReadCount);
-    Serial.println(m_accumReadCount);
-  }
+//  while ( m_accumReadCount <  totalByteSize)  //because of timeout
+//  { 
+//    int newReadCount =  Serial.readBytes( &totalRecieveBuffer[m_accumReadCount], totalByteSize - m_accumReadCount);
+//    m_accumReadCount += newReadCount; 
+//
+//    Serial.println(totalByteSize);
+//    Serial.println(newReadCount);
+//    Serial.println(m_accumReadCount);
+//  }
 
  for(int i=0; i<totalByteSize; i+=3){
     Serial.println(totalRecieveBuffer[i]);
@@ -169,7 +173,7 @@ void loop (void) {
     Serial.print(totalRecieveBuffer[i+2]);
   }
 
-// if(m_accumReadCount != totalByteSize){
+// if(m_accumReadCount < totalByteSize){
 //    return ;
 //  }
 
@@ -337,5 +341,7 @@ void loop (void) {
  //else {
  // // The buffer is not yet filled, so continue to read in the next iteration of loop()
  //}
+
+ m_accumReadCount = 0;
 
 }

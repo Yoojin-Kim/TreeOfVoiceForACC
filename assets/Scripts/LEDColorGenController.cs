@@ -115,7 +115,7 @@ public class LEDColorGenController : MonoBehaviour
         for (int i = 0; i < m_totalNumOfLeds; i++)
         {
             Debug.Log("GenController"+i + "th LED");
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < 3; j++)
             {
                 Debug.Log("GenController" + m_LEDArray[i * 3 + j]); //for test
             }
