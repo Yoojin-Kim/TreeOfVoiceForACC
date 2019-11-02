@@ -77,7 +77,9 @@ void setup (void) {
 	// which sets the SPI clock to one-quarter the frequency of the system clock (4 Mhz for the boards at 16 MHz).
   // SPI.setBitOrder(MSBFIRST);
 
-  Serial.begin(115200);
+  Serial.begin(115200); //For Unity
+
+  Serial1.begin(9600); //For PC : Mega RX1, TX1 -> Port Num : 18,19
 }
  
 // https://arduino.stackexchange.com/questions/8457/serial-read-vs-serial-readbytes
@@ -108,7 +110,7 @@ void setup (void) {
 	//and I can predict the number of bytes I should receive back. –
 
 void loop (void) {	
-  Serial.println("loop started");
+  Serial1.println("loop started");
 //  /////////////////////////////////////////////////////////////////////////////////////////
 //	int countToRead = Serial.available(); 
 //  Serial.println(countToRead);
@@ -132,7 +134,7 @@ void loop (void) {
 
     //m_accumReadCount += readCount;
     
-    Serial.println(readCount);
+    Serial1.println(readCount);
 //
 //	// terminates if length characters have been read or timeout (see setTimeout)
 //  // returns the number of characters placed in the buffer (0 means no valid data found)
@@ -168,9 +170,9 @@ void loop (void) {
 //  }
 
  for(int i=0; i<totalByteSize; i+=3){
-    Serial.println(totalRecieveBuffer[i]);
-    Serial.print(totalRecieveBuffer[i+1]);
-    Serial.print(totalRecieveBuffer[i+2]);
+    Serial1.println(totalRecieveBuffer[i]);
+    Serial1.print(totalRecieveBuffer[i+1]);
+    Serial1.print(totalRecieveBuffer[i+2]);
   }
 
 // if(m_accumReadCount < totalByteSize){
